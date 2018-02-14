@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>First Angular Application</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<!-- only one module per page at a time, otherwise whole page will break -->
+<body ng-app="myApp" ng-controller="myCtrl">
+	<!-- "ng" is the signifier of a directive-->
+	<!-- div is owner of angular "application" -->
+	<div  >
+		<p>Age: <input type="text" ng-model="age"></p>
+		<p>Sex: <input type="text" ng-model="sex"></p>
+		<p>Location <input type="" ng-model="location"></p>
+
+		<p>ASL: {{age}}/{{sex}}/{{location}}</p>
+	</div>
+
+	<div >
+		<!-- ng-model creates a variable and binds it to value of input -->
+		<!-- only valid within parent div -->
+		<p>Name: <input type="text" ng-model="name"/></p>
+		<!-- binds innerhtml to variable named below -->
+		<p ng-bind="name"></p>
+		<!-- valid anywhere in file -->
+		<div ng-init="firstname = 'John'">
+		<p>The name is: <span ng-bind="firstname"></span></p>
+		<!-- expressions can exist regardless of application scope d -->
+		<p>Result of expression: {{ 5 + 5 }} </p>
+		<!-- <p>ASL: {{age}}/{{sex}}/{{location}}</p> -->
+	</div>
+
+	<div >
+		<p>Outside div, firstname is <span ng-bind="firstname"></span></p>
+		<p>Outside div, name is <span ng-bind="name"></span></p>
+		<p>Result of expression: {{ 5 + 5 }} </p>
+		<!-- <p>ASL: {{age}}/{{sex}}/{{location}}</p> -->
+	</div>
+
+	<div >
+		<p>Sans directive, firstname is <span ng-bind="firstname"></span></p>
+		<p>Sans directive, name is <span ng-bind="name"></span></p>
+		<p>Result of expression: {{ 5 + 5 }} </p>
+		<!-- <p>ASL: {{age}}/{{sex}}/{{location}}</p> -->
+	</div>
+
+	<!-- modules and controllers can either be on same page or in own files -->
+	<script src="modules/myApp.js"></script>
+	<script src="controllers/myCtrl.js"></script>
+
+
+</body>
+</html>
