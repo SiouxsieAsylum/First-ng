@@ -5,10 +5,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 </head>
 <!-- only one module per page at a time, otherwise whole page will break -->
+<!-- body is owner of angular "application" -->
+<!-- can be other elements as well -->
 <body ng-app="myApp" ng-controller="myCtrl">
 	<!-- "ng" is the signifier of a directive-->
-	<!-- div is owner of angular "application" -->
-	<div  >
+	
+	<div>
 		<p>Age: <input type="text" ng-model="age"></p>
 		<p>Sex: <input type="text" ng-model="sex"></p>
 		<p>Location <input type="" ng-model="location"></p>
@@ -30,24 +32,22 @@
 		<!-- <p>ASL: {{age}}/{{sex}}/{{location}}</p> -->
 	</div>
 
-	<div >
-		<p>Outside div, firstname is <span ng-bind="firstname"></span></p>
-		<p>Outside div, name is <span ng-bind="name"></span></p>
-		<p>Result of expression: {{ 5 + 5 }} </p>
-		<!-- <p>ASL: {{age}}/{{sex}}/{{location}}</p> -->
+	<div>
+		<ul>
+			<li ng-repeat='u in usernames'>
+				{{ u }}
+			</li>
+		</ul>
 	</div>
 
-	<div >
-		<p>Sans directive, firstname is <span ng-bind="firstname"></span></p>
-		<p>Sans directive, name is <span ng-bind="name"></span></p>
-		<p>Result of expression: {{ 5 + 5 }} </p>
-		<!-- <p>ASL: {{age}}/{{sex}}/{{location}}</p> -->
-	</div>
+	<test></test>
+
+
 
 	<!-- modules and controllers can either be on same page or in own files -->
 	<script src="modules/myApp.js"></script>
 	<script src="controllers/myCtrl.js"></script>
-
+	<script src="directives/myDirs.js"></script>
 
 </body>
 </html>
