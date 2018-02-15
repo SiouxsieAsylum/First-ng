@@ -3,6 +3,24 @@
 <head>
 	<title>First Angular Application</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<style>
+	/*you can assign classes based on statuses*/
+	/*
+	ng-empty
+	ng-not-empty
+	ng-touched
+	ng-untouched
+	ng-valid
+	ng-invalid
+	ng-dirty
+	ng-pending
+	ng-pristine
+
+	*/
+		input.ng-invalid{
+			background-color: red;
+		}
+	</style>
 </head>
 <!-- only one module per page at a time, otherwise whole page will break -->
 <!-- body is owner of angular "application" -->
@@ -41,6 +59,27 @@
 	</div>
 
 	<test></test>
+	<!-- or <div test></div> -->
+	<!-- or <div class='test'></div> (add restrict: 'C' to return object) -->
+	<!-- or comment saying "directive: test" (add restrict: 'M', replace: true to return object)-->
+	<!-- other restrictions: EA (element/attribute) default  -->
+
+	<!-- models can perform validations on the input -->
+	<form name="myForm">
+		<input type="email" name="myAddress" ng-model="text" required>
+		<span ng-show="myForm.myAddress.$error.email">Not a valid email address</span>
+		<br>
+		Status: <br>
+		<!-- no errors -->
+		Valid: {{myForm.myAddress.$valid}}
+		<br>
+		<!--  -->
+		Dirty: {{myForm.myAddress.$dirty}}
+		<br>
+		Touched: {{myForm.myAddress.$touched}}
+	</form>
+
+	<button ng-click="changeText()">{{pressStatus}}</button>
 
 
 
