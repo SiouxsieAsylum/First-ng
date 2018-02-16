@@ -3,6 +3,7 @@
 <head>
 	<title>First Angular Application</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
 	<style>
 	/*you can assign classes based on statuses*/
 	/*
@@ -17,26 +18,36 @@
 	ng-pristine
 
 	*/
-		input.ng-invalid{
-			background-color: red;
+
+		.ng-invalid {
+			color: red;
+		}
+
+		.ng-touched {
+			color: blue;
+		}
+
+		.ng-valid {
+			color: green;
 		}
 	</style>
 </head>
 <!-- only one module per page at a time, otherwise whole page will break -->
 <!-- body is owner of angular "application" -->
 <!-- can be other elements as well -->
-<body ng-app="myApp" ng-controller="myCtrl">
+<body ng-app="myApp">
 	<!-- "ng" is the signifier of a directive-->
 	
-	<div>
+	<div ng-controller="myCtrl">
 		<p>Age: <input type="text" ng-model="age"></p>
 		<p>Sex: <input type="text" ng-model="sex"></p>
 		<p>Location <input type="" ng-model="location"></p>
 
-		<p>ASL: {{age}}/{{sex}}/{{location}}</p>
+		<!-- you can filter expressions with the pipe function -->
+		<p>ASL: {{age | currency}}/{{sex | lowercase }}/{{location}}</p>
 	</div>
 
-	<div >
+	<div>
 		<!-- ng-model creates a variable and binds it to value of input -->
 		<!-- only valid within parent div -->
 		<p>Name: <input type="text" ng-model="name"/></p>
@@ -50,10 +61,14 @@
 		<!-- <p>ASL: {{age}}/{{sex}}/{{location}}</p> -->
 	</div>
 
-	<div>
+	<div ng-controller="myCtrl">
+		<input type="text" ng-model="filterInput">
 		<ul>
-			<li ng-repeat='u in usernames'>
-				{{ u }}
+			<!-- you can also filter in the declaration -->
+			<!-- filter or limitTo both work -->
+			<!-- apply filter to the variable not the declaration-->
+			<li ng-repeat="u in usernames">
+				{{ u | myFilter }}
 			</li>
 		</ul>
 	</div>
@@ -79,14 +94,31 @@
 		Touched: {{myForm.myAddress.$touched}}
 	</form>
 
-	<button ng-click="changeText()">{{pressStatus}}</button>
+	<button ng-controller="myCtrl" ng-click="changeText()">{{pressStatus}}</button>
 
+	<!-- things have to be children of the same element to be affected by changes by the model to controller values-->
+	<div ng-controller="myCtrl">
+		<button ng-disabled="mySwitch">Clickable</button>
+		<input type="checkbox" ng-model="mySwitch">
+	</div>
 
+	<p ng-controller="myCtrl">Controller says: {{displayInfo()}}</p>
+
+	<p>The app's color is <span id="app-color">{{color}}</span></p>
+
+	<div ng-controller="myCtrl">
+		<p>The controller's color is <span id="ctrl-color">{{color}}</span></p>
+	</div>
+
+	<p ng-controller="myCtrl"> locale: {{locale}}</p>
 
 	<!-- modules and controllers can either be on same page or in own files -->
+	<!-- Don't use arrow functions -->
 	<script src="modules/myApp.js"></script>
 	<script src="controllers/myCtrl.js"></script>
 	<script src="directives/myDirs.js"></script>
+	<script src="services/myServ.js"></script>
+	<script src="filters/myFilt.js"></script>
 
 </body>
 </html>
