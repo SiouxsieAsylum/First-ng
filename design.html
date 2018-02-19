@@ -2,20 +2,422 @@
 <html>
 <head>
 	<title>Designed</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
 	<style>
-		
+		/*Angular styles*/
+		.ng-invalid, .ng-touched{
+			border-bottom: 3px solid red;
+		}
+
+
+		.ng-valid{
+			background-color: rgba(150, 255, 206,0.3);
+			color:rgb(46, 76, 59);
+			border-bottom: 3px solid green;
+		}
+
+
+		.ng-untouched{
+			border-bottom: 3px solid rgb(255,172,62);
+		}
+
+
+
+		.ng-invalid:hover{
+			background-color: rgba(255,0,0,0.5)
+		}
+
+		.ng-untouched:hover{
+			background-color: rgba(255,172,62,0.5)
+		}
+
+		.selected{
+			background-color: green;
+		}
+
+
+		/*///////////////////ELEMENT STYLES//////////////////////*/
+		/*////////////////////////RESET//////////////////////////*/
+		html,body{
+			height: 100%;
+			width:100%;
+			overflow-x: hidden;
+		}
+
+				html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center, dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed, 
+		figure, figcaption, footer, header, hgroup, 
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+			box-sizing: border-box;
+			text-align: left;
+		}
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure, 
+		footer, header, hgroup, menu, nav, section {
+			display: block;
+		}
+		body {
+			line-height: 1;
+			position: relative;
+		}
+
+		ol, ul {
+			list-style: none;
+		}
+		blockquote, q {
+			quotes: none;
+		}
+		blockquote:before, blockquote:after,
+		q:before, q:after {
+			content: '';
+			content: none;
+		}
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		input{
+			border: none;
+			outline: none;
+		}
+
+		/*///////////////////////HEADER//////////////////////////*/
+
+		header {
+			width: 100vw;
+			height: 20vh;
+			background-color: rgb(36,78,137);
+			position: relative;
+		}
+
+		#header-container{
+			position: relative;
+			width: 45vw;
+			left: 3vw;
+			top: 1vw;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		#main-logo{
+			height: 15vh;
+			width: 15vh;
+			position: relative;
+			border-radius: 15vh;
+			background-color: red;
+			text-indent: -9999px;
+		}
+
+		#product-name{
+			font-size: 13vh;
+			color: white;
+		}
+
+		/*////////////////////////BODY///////////////////////////*/
+
+		body{
+			background-color: rgb(186,210,230);
+			color: rgb(22, 53, 96);
+		}
+
+		.title{
+			font-size: 3vh;
+			position: relative;
+			top:4vh;
+			left:3vw;
+		}
+
+		#entry-container{
+			height: 70vh;
+			width: 80vw;
+			display: flex;
+			justify-content: space-between;
+			background-color: rgb(255,255,255);
+		}
+
+		.entry{
+			height: 60vh;
+			position: relative;
+			margin:5vh;
+			width: 35vw;
+			display: flex;
+			justify-content: space-around;
+			background-color: rgb(186,210,230);
+			border-radius: 2vh;
+			box-shadow: 1px 1px 8px rgb(31,125,186)
+		}
+
+		.hidden{
+			display: none
+		}
+
+		/*//////////////////////////NG-REPEATS///////////////////////*/
+
+
+		.form-feild{
+			height: inherit;
+			display: flex;
+			flex-flow: column wrap;
+			justify-content: space-around;
+		}
+
+		.elaborate{
+			height:20vh;
+			/*width:12vw;*/
+			
+		}
+
+		.switch{
+			margin-top: 3vh;
+		}
+
+		.feild, .title, #answers-title{
+			font-weight: bolder;
+		}
+
+		.input-flex{
+			padding: 2vh 0 2vh 0;
+			display: flex;
+			justify-content: space-around;
+		}
+
+
+		/*//////////////////////////ANSWER LIST///////////////////////*/
+
+		.answers{
+			position: absolute;
+			right: 0; 
+			top: 20vh;
+			height:80vh;
+			width: 20vw;
+			padding: 5vh 2vw;
+			list-style: none;
+		}
+
+		#answers-list{
+			overflow: scroll;
+			padding:0 2vw 0 2vw;
+			word-wrap: pre;
+			background-color: rgb(237, 246, 255);
+			height:60vh;
+			width:15vw;
+		}
+
+		#answers-title{
+			font-size: 3vh;
+			margin-bottom: 1vh;
+		}
+
+		/*/////////////////////////MEDIA QUERIES//////////////////////*/
+		/*///////////////////////MAX-WIDTH: 800PX/////////////////////*/
+		@media (max-width: 800px){
+
+		/*////////////////////////////HEADER//////////////////////////*/
+			header {
+				height: 15vh;
+			}
+
+			#header-container{
+				top: 2vw;
+				width: 50vw;
+			}
+
+			#main-logo{
+				height: 12vh;
+				width: 12vh;
+
+			}
+
+			#product-name{
+				line-height: 10vh;
+				font-size: 7vh;
+			}
+
+		/*/////////////////////////////BODY///////////////////////////*/
+
+			.title{
+				top:5vh;
+				left: 2vw;
+			}
+
+			#entry-container{
+				height: 80vh;
+				padding-top:10vh;
+				justify-content: space-around;
+			}
+
+			.show{
+				display: none;
+			}
+
+			.hidden{
+				display: block;
+			}
+
+			.entry{
+				margin: 0;
+				padding-top: 5vh;
+
+			}
+
+			.form-feild{
+				height: calc(100% - 5vh);
+				display: flex;
+				align-items: center;
+			}
+
+			/*//////////////////////////NG-REPEATS///////////////////////*/
+
+			.elaborate{
+				height: 7vh;
+				width: 20vw;
+			}
+
+			/*//////////////////////////ANSWER LIST///////////////////////*/
+
+
+		}
+
+		@media (orientation: portait){
+			.right{
+				background-color: red;
+			}
+		}
+
 	</style>
 </head>
 <body ng-app="designApp" ng-controller="designCtrl">
 	<header>
-		<h1>Enter diagnostic information here:</h1>
+		<div id="header-container">
+			<div class="logo" id="main-logo">
+				logo
+			</div>
+			<h1 id="product-name">Product</h1>
+		</div>
 	</header>
-	<table>
-		
-	</table>
 
+	<h1 class="title">Enter diagnostic information here:</h1>
+
+	<div id="entry-container">
+		<div class="entry show" id="inputFieldCollector">
+			<div class="form-feild left" >
+				<div ng-repeat="feild in inputFields" ng-if="$index % 2 === 0" >
+					<p class="feild">{{feild}}:</p>
+					<input type="text" ng-model="info" ng-change="aquInfo(feild,info)" required>
+				</div>
+			</div>
+			<div class="form-feild right">
+				<div ng-repeat="feild in inputFields" ng-if="$index % 2 !== 0">				
+					<p class="feild">{{feild}}:</p>
+					<input type="text" ng-model="info" ng-change="aquInfo(feild,info)" required>
+				</div>
+			</div>
+		</div>
+
+		<div class="entry hidden" id="inputFieldCollector">
+			<div class="form-feild left" >
+				<div ng-repeat="feild in inputFields">
+					<p class="feild">{{feild}}:</p>
+					<input type="text" ng-model="info" ng-change="aquInfo(feild,info)" required>
+				</div>
+			</div>
+		</div>
+
+		<div class="entry hidden" id="radioFieldCollector">
+			<div class="form-feild left">
+				<div class="elaborate"  ng-repeat="rfeild in radioFields">
+					<p class="feild">{{rfeild}}</p>
+						<div class="input-flex">
+							<p>
+								Yes 
+								<input id="yes" type="radio" ng-model="rtrue" ng-value="true" ng-change="aquInfo(rfeild,rtrue)">
+							</p>						 
+							<p>
+								No
+								<input id="no" type="radio" ng-model="rtrue" ng-value="false">
+							</p>
+						</div>
+					<div ng-switch="rtrue">
+						<div class="switch" ng-switch-when="false">
+							<p>Please elaborate:</p>
+							<input ng-model="rdisc" ng-change="aquInfo(rfeild,rdisc)" required>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="entry show" id="radioFieldCollector">
+			<div class="form-feild left">
+				<div class="elaborate"  ng-repeat="rfeild in radioFields" ng-if="$index %2 === 0">
+					<p class="feild">{{rfeild}}</p>
+						<div class="input-flex">
+							<p>
+								Yes 
+								<input id="yes" type="radio" ng-model="rtrue" ng-value="true" ng-change="aquInfo(rfeild,rtrue)">
+							</p>						 
+							<p>
+								No
+								<input id="no" type="radio" ng-model="rtrue" ng-value="false">
+							</p>
+						</div>
+					<div ng-switch="rtrue">
+						<div class="switch" ng-switch-when="false">
+							<p>Please elaborate:</p>
+							<input ng-model="rdisc" ng-change="aquInfo(rfeild,rdisc)" required>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-feild right">
+				<div class="elaborate" ng-repeat="rfeild in radioFields" ng-if="$index % 2 !== 0">
+					<p class="feild">{{rfeild}}</p>
+						<div class="input-flex">
+							<p>
+								Yes 
+								<input id="yes" type="radio" ng-model="rtrue" ng-value="true" ng-change="aquInfo(rfeild,rtrue)">
+							</p>						 
+							<p>
+								No
+								<input id="no" type="radio" ng-model="rtrue" ng-value="false">
+							</p>
+						</div>
+					<div ng-switch="rtrue">
+						<div class="switch" ng-switch-when="false">
+							<p>Please elaborate:</p>
+							<input ng-model="rdisc" ng-change="aquInfo(rfeild,rdisc)" required>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="answers">
+		<h1 id="answers-title">Entered Feilds:</h1>
+		<ul id="answers-list">	
+			<li ng-repeat="(feild,answer) in dispInfo()">{{feild}}: {{answer}}</li>
+		</ul>
+	</div>
+
+	<script src="modules/designApp.js"></script>
 	<script src="controllers/designCtrl.js"></script>
 	<script src="directives/designDir.js"></script>
 	<script src="services/designServ.js"></script>
