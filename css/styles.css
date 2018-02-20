@@ -1,0 +1,413 @@
+
+		/*Angular styles*/
+		.ng-invalid, .ng-touched{
+			border-bottom: 3px solid red;
+		}
+
+
+		.ng-valid{
+			background-color: rgba(150, 255, 206,0.3);
+			color:rgb(46, 76, 59);
+			border-bottom: 3px solid green;
+		}
+
+
+		.ng-untouched{
+			border-bottom: 3px solid rgb(255,172,62);
+		}
+
+
+
+		input.ng-invalid:hover{
+			background-color: rgba(255,0,0,0.5)
+		}
+
+		.ng-untouched:hover{
+			background-color: rgba(255,172,62,0.5)
+		}
+
+		.selected{
+			background-color: green;
+		}
+
+
+		/*///////////////////ELEMENT STYLES//////////////////////*/
+		/*////////////////////////RESET//////////////////////////*/
+		html,body{
+			height: 100%;
+			width:100%;
+			overflow-x: hidden;
+		}
+
+				html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center, dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed, 
+		figure, figcaption, footer, header, hgroup, 
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+			box-sizing: border-box;
+			text-align: left;
+		}
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure, 
+		footer, header, hgroup, menu, nav, section {
+			display: block;
+		}
+		body {
+			line-height: 1;
+			position: relative;
+		}
+
+		ol, ul {
+			list-style: none;
+		}
+		blockquote, q {
+			quotes: none;
+		}
+		blockquote:before, blockquote:after,
+		q:before, q:after {
+			content: '';
+			content: none;
+		}
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		input{
+			border: none;
+			outline: none;
+		}
+
+		/*///////////////////////HEADER//////////////////////////*/
+
+		header {
+			width: 100vw;
+			height: 20vh;
+			background-color: rgb(36,78,137);
+			position: relative;
+		}
+
+		#header-container{
+			position: relative;
+			width: 30vw;
+			left: 3vw;
+			top: 1vw;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		#main-logo{
+			height: 15vh;
+			width: 15vh;
+			position: relative;
+			border-radius: 15vh;
+			background-color: red;
+			text-indent: -9999px;
+		}
+
+		#product-name{
+			font-size: 13vh;
+			color: white;
+		}
+
+		/*////////////////////////BODY///////////////////////////*/
+
+		body{
+			background-color: rgb(186,210,230);
+			color: rgb(22, 53, 96);
+		}
+
+		.title{
+			font-size: 3vh;
+			position: relative;
+			top:4vh;
+			left:3vw;
+		}
+
+		#entry-container{
+			height: 70vh;
+			width: 80vw;
+			display: flex;
+			justify-content: space-between;
+			background-color: rgb(255,255,255);
+		}
+
+		.entry{
+			height: 60vh;
+			position: relative;
+			margin:5vh;
+			width: 35vw;
+			display: flex;
+			justify-content: space-around;
+			background-color: rgb(186,210,230);
+			border-left:5px solid rgb(31,125,186);
+			transition: all ease-in-out 0.5s;
+		}
+
+/*		.hidden{
+			display: none
+		}*/
+
+		/*///////////////////////////MODAL//////////////////////////*/
+
+		.modal-cover{
+			position:absolute;
+			z-index: -1;
+			top:0;
+			left:0;
+			background-color: rgba(79, 79, 79, 0.5);
+			height:100vh;
+			width:100vw;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.cube, .cube div {
+		  font-size: 3vw;
+		  transition: all ease-in-out 0.5s;
+		  width:20vw;
+		  height: 10vh;
+		}
+
+		.a,.b{
+		  display:flex;
+		  flex-direction:column;
+		  justify-content:center;
+		}
+
+		.a p, .b p{
+			align-self: center;
+		}
+
+		.cube{
+			position:absolute;
+			top:80vh;
+			align-self: center;
+			cursor: default;
+
+		}
+
+		.a{
+		  background-color: lightblue;
+		  transform-origin:0% 100%;
+		  top:0;
+		}
+
+		.b{
+		  background-color: lightgreen;
+		  transform:rotateX(-90deg);
+		  height: 100px;
+		  transform-origin:0% 0%;
+		}
+
+		/*//////////////////////////NG-REPEATS///////////////////////*/
+
+
+		.form-feild{
+			height: inherit;
+			display: flex;
+			flex-flow: column wrap;
+			justify-content: space-around;
+		}
+
+		.elaborate{
+			height:20vh;
+			/*width:12vw;*/
+			
+		}
+
+		.switch{
+			margin-top: 3vh;
+		}
+
+		.feild, .title, #answers-title{
+			font-weight: bolder;
+		}
+
+		.input-flex{
+			padding: 2vh 0 2vh 0;
+			display: flex;
+			justify-content: space-around;
+		}
+
+
+		/*//////////////////////////ANSWER LIST///////////////////////*/
+
+		.answers{
+			position: absolute;
+			right: 0; 
+			top: 20vh;
+			height:80vh;
+			width: 20vw;
+			padding: 5vh 2vw;
+			list-style: none;
+		}
+
+		#answers-list{
+			overflow: scroll;
+			padding:0 2vw 0 2vw;
+			word-wrap: pre;
+			background-color: rgb(237, 246, 255);
+			height:60vh;
+			width:15vw;
+		}
+
+		#answers-title{
+			font-size: 3vh;
+			margin-bottom: 1vh;
+		}
+
+		/*///////////////////////////ANIMATION////////////////////////*/
+		.onFocusATM{
+			position: absolute;
+			left:20vw;
+			height:50vh;
+			width:60vw;
+			z-index: 6;
+			transform: scale(1.1);
+			margin: 0 auto;
+		}
+
+		.disableBackground{
+			z-index: 5;
+		}
+
+		.threeD{
+			transform:rotateX(90deg);
+		}
+
+		.threeE{
+			transform:rotateX(0deg);
+		    width: calc(100%-100px);
+		    top:0
+		}
+
+		.translate{
+		  transform: translateY(-100px);
+		}
+
+		.disabled{
+			pointer-events: none;
+			color:rgb(60, 64, 66);
+			background-color: rgb(173, 184, 188);
+		}
+
+		/*/////////////////////////MEDIA QUERIES//////////////////////*/
+		/*///////////////////////MAX-WIDTH: 800PX/////////////////////*/
+		@media (max-width: 800px){
+
+		/*////////////////////////////HEADER//////////////////////////*/
+			header {
+				height: 15vh;
+			}
+
+			#header-container{
+				top: 2vw;
+				width: 50vw;
+			}
+
+			#main-logo{
+				height: 12vh;
+				width: 12vh;
+			}
+
+			#product-name{
+				line-height: 10vh;
+				font-size: 7vh;
+			}
+
+		/*/////////////////////////////BODY///////////////////////////*/
+
+			.title{
+				top:5vh;
+				left: 2vw;
+			}
+
+			#entry-container{
+				height: 80vh;
+				padding-top:10vh;
+				flex-direction: column;
+				justify-content: space-around;
+			}
+
+/*			.show{
+				display: none;
+			}
+
+			.hidden{
+				display: block;
+			}*/
+
+			.entry{
+				/*margin: ;*/
+				/*padding-top: 5vh;*/
+				height:30vh;
+				width:70vw;
+
+			}
+
+			.form-feild{
+				height: calc(100% - 5vh);
+				display: flex;
+				align-items: center;
+			}
+
+
+			/*//////////////////////////NG-REPEATS///////////////////////*/
+
+			.elaborate{
+				height: 7vh;
+				display: flex;
+				justify-content: space-around;
+			}
+
+			.switch{
+				margin-top: 0;
+				transition: 0.5s ease-in-out all;
+			}
+
+			/*//////////////////////////ANSWER LIST///////////////////////*/
+			/*///////////////////////////ANIMATIONS///////////////////////*/
+			.onFocusATM{
+				/*height:40vh;*/
+				left:10vw;
+				margin: 0;
+				/*margin-top: 0vh;*/
+			}
+
+			.wideAF{
+				width:55vw;
+			}
+
+			.switch.ng-enter{
+				opacity:0.1;
+				align-self: center;
+			}
+
+			.switch.ng-enter-active{
+				opacity:1;
+				align-self: initial;
+			}
+			.switch.ng-leave{
+				opacity:1;
+			}
+
+			.switch.ng-leave-active{
+				opacity:0.1;
+				align-self: center;
+			}
+
+		}
