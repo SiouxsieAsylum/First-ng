@@ -5,7 +5,8 @@ app.controller('designCtrl', function($scope, $interval, $timeout, collectInfo,)
 	$scope.radioCounter=0
 	$scope.hoverEdit=false
 	$scope.buttonActivated=false
-	// $scope.setActive=false
+	$scope.setActive=false
+
 	$scope.setActivityTrue=function(){
 		$scope.setActive = true
 	}
