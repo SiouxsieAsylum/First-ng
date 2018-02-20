@@ -203,7 +203,7 @@
 		.cube{
 			position:absolute;
 			align-self: center;
-			cursor: pointer;
+			cursor: default;
 		}
 
 		.a{
@@ -440,18 +440,18 @@
 		</div>
 
 		<!-- portrait -->
-		<div class="entry hidden" ng-class="{'onFocusATM':setActive}" ng-form name="radio" id="radioFieldCollector">
+		<div class="entry hidden" ng-form name="radio" id="radioFieldCollector">
 			<div class="form-feild left">
 				<div class="elaborate"  ng-repeat="rfeild in radioFields">
 					<p class="feild">{{rfeild}}</p>
 						<div class="input-flex">
 							<p>
 								Yes 
-								<input id="yes" ng-focus="setActivityTrue()" type="radio" ng-model="rtrue" ng-value="true" ng-change="aquInfo(rfeild,rtrue)" required>
+								<input id="yes" type="radio" ng-model="rtrue" ng-value="true" ng-change="aquInfo(rfeild,rtrue)">
 							</p>						 
 							<p>
 								No
-								<input id="no" ng-focus="setActivityTrue()" type="radio" ng-model="rtrue" ng-value="false" required>
+								<input id="no" type="radio" ng-model="rtrue" ng-value="false">
 							</p>
 						</div>
 					<div ng-switch="rtrue">
@@ -464,18 +464,18 @@
 			</div>
 		</div>
 		<!-- landscape -->
-		<div class="entry show" ng-class="{'onFocusATM':setActive}" ng-form name="radio" id="radioFieldCollector">
+		<div class="entry show" ng-form name="radio" id="radioFieldCollector">
 			<div class="form-feild left">
 				<div class="elaborate"  ng-repeat="rfeild in radioFields" ng-if="$index %2 === 0">
 					<p class="feild">{{rfeild}}</p>
 						<div class="input-flex">
 							<p>
 								Yes 
-								<input id="yes" ng-focus="setActivityTrue()" type="radio" ng-model="rtrue" ng-value="true" ng-change="aquInfo(rfeild,rtrue)" required>
+								<input id="yes" type="radio" ng-model="rtrue" ng-value="true" ng-change="aquInfo(rfeild,rtrue)">
 							</p>						 
 							<p>
 								No
-								<input id="no" ng-focus="setActivityTrue()" type="radio" ng-model="rtrue" ng-value="false" required>
+								<input id="no" type="radio" ng-model="rtrue" ng-value="false">
 							</p>
 						</div>
 					<div ng-switch="rtrue">
@@ -492,11 +492,11 @@
 						<div class="input-flex">
 							<p>
 								Yes 
-								<input id="yes" ng-focus="setActivityTrue()" type="radio" ng-model="rtrue" ng-value="true" ng-change="aquInfo(rfeild,rtrue)" required>
+								<input id="yes" type="radio" ng-model="rtrue" ng-value="true" ng-change="aquInfo(rfeild,rtrue)">
 							</p>						 
 							<p>
 								No
-								<input id="no" ng-focus="setActivityTrue()" type="radio" ng-model="rtrue" ng-value="false" required>
+								<input id="no" type="radio" ng-model="rtrue" ng-value="false">
 							</p>
 						</div>
 					<div ng-switch="rtrue">
