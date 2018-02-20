@@ -25,7 +25,7 @@
 
 
 
-		.ng-invalid:hover{
+		input.ng-invalid:hover{
 			background-color: rgba(255,0,0,0.5)
 		}
 
@@ -109,7 +109,7 @@
 
 		#header-container{
 			position: relative;
-			width: 45vw;
+			width: 30vw;
 			left: 3vw;
 			top: 1vw;
 			display: flex;
@@ -160,12 +160,63 @@
 			display: flex;
 			justify-content: space-around;
 			background-color: rgb(186,210,230);
-			border-radius: 2vh;
-			box-shadow: 1px 1px 8px rgb(31,125,186)
+			border-left:5px solid rgb(31,125,186);
+			transition: all ease-in-out 0.5s;
 		}
 
 		.hidden{
 			display: none
+		}
+
+		/*///////////////////////////MODAL//////////////////////////*/
+
+		.modal-cover{
+			position:absolute;
+			z-index: -1;
+			top:0;
+			left:0;
+			background-color: rgba(79, 79, 79, 0.5);
+			height:100vh;
+			width:100vw;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		.cube, .cube div {
+		  font-size: 3vw;
+		  transition: all ease-in-out 0.5s;
+		  width:20vw;
+		  height: 10vh;
+		}
+
+		.a,.b{
+		  display:flex;
+		  flex-direction:column;
+		  justify-content:center;
+		}
+
+		.a p, .b p{
+			align-self: center;
+		}
+
+		.cube{
+			position:absolute;
+			align-self: center;
+			cursor: pointer;
+		}
+
+		.a{
+		  background-color: lightblue;
+		  transform-origin:0% 100%;
+		  top:0;
+		}
+
+		.b{
+		  background-color: lightgreen;
+		  transform:rotateX(-90deg);
+		  height: 100px;
+		  transform-origin:0% 0%;
 		}
 
 		/*//////////////////////////NG-REPEATS///////////////////////*/
@@ -225,6 +276,38 @@
 			margin-bottom: 1vh;
 		}
 
+		/*///////////////////////////ANIMATION////////////////////////*/
+		.onFocusATM{
+			/*position: absolute;*/
+			z-index: 6;
+			transform: scale(1.1);
+			margin: 0 auto;
+		}
+
+		.disableBackground{
+			z-index: 5;
+		}
+
+		.threeD{
+			transform:rotateX(90deg);
+		}
+
+		.threeE{
+			transform:rotateX(0deg);
+		    width: calc(100%-100px);
+		    top:0
+		}
+
+		.translate{
+		  transform: translateY(-100px);
+		}
+
+		.disabled{
+			pointer-events: none;
+			color:rgb(60, 64, 66);
+			background-color: rgb(173, 184, 188);
+		}
+
 		/*/////////////////////////MEDIA QUERIES//////////////////////*/
 		/*///////////////////////MAX-WIDTH: 800PX/////////////////////*/
 		@media (max-width: 800px){
@@ -242,7 +325,6 @@
 			#main-logo{
 				height: 12vh;
 				width: 12vh;
-
 			}
 
 			#product-name{
@@ -283,6 +365,7 @@
 				align-items: center;
 			}
 
+
 			/*//////////////////////////NG-REPEATS///////////////////////*/
 
 			.elaborate{
@@ -316,31 +399,48 @@
 	<h1 class="title">Enter diagnostic information here:</h1>
 
 	<div id="entry-container">
-		<div class="entry show" id="inputFieldCollector">
+
+		<!-- landscape -->
+		<div ng-class="{'onFocusATM':setActive}" ng-form name="inputs" class="entry show" id="inputFieldCollector">
 			<div class="form-feild left" >
 				<div ng-repeat="feild in inputFields" ng-if="$index % 2 === 0" >
 					<p class="feild">{{feild}}:</p>
-					<input type="text" ng-model="info" ng-change="aquInfo(feild,info)" required>
+					<input ng-focus="setActivityTrue()" type="text" ng-model="info" ng-change="aquInfo(feild,info)" required>
 				</div>
 			</div>
 			<div class="form-feild right">
 				<div ng-repeat="feild in inputFields" ng-if="$index % 2 !== 0">				
 					<p class="feild">{{feild}}:</p>
-					<input type="text" ng-model="info" ng-change="aquInfo(feild,info)" required>
+					<input ng-focus="setActivityTrue()" type="text" ng-model="info" ng-change="aquInfo(feild,info)" required>
 				</div>
 			</div>
 		</div>
-
-		<div class="entry hidden" id="inputFieldCollector">
+		
+		<!-- portrait -->
+		<div ng-class="{'onFocusATM':setActive}" ng-form name="inputs" class="entry hidden" id="inputFieldCollector">
 			<div class="form-feild left" >
 				<div ng-repeat="feild in inputFields">
 					<p class="feild">{{feild}}:</p>
-					<input type="text" ng-model="info" ng-change="aquInfo(feild,info)" required>
+					<input ng-focus="setActivityTrue()" type="text" ng-model="info" ng-change="aquInfo(feild,info)" required>
 				</div>
 			</div>
 		</div>
 
-		<div class="entry hidden" id="radioFieldCollector">
+		<!-- modal -->
+		<div ng-class="{'disableBackground': setActive }" class="modal-cover">
+<!-- 			<input type="checkbox" ng-model="buttonInActivated">
+ -->			<div class="cube" ng-class="{'translate':hoverEdit}">
+  				<div class="a" ng-click="hoverIn()" ng-class="{'threeD':hoverEdit,'disabled': inputs.$invalid}" >
+  					<p>ENTER</p>
+  				</div>
+  				<div class="a b" ng-click="setActivityFalse()" ng-class="{'threeE':hoverEdit}">
+  					<p>ARE YOU SURE?</p>
+  				</div>
+			</div>   
+		</div>
+
+		<!-- portrait -->
+		<div class="entry hidden" ng-form name="radio" id="radioFieldCollector">
 			<div class="form-feild left">
 				<div class="elaborate"  ng-repeat="rfeild in radioFields">
 					<p class="feild">{{rfeild}}</p>
@@ -363,8 +463,8 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="entry show" id="radioFieldCollector">
+		<!-- landscape -->
+		<div class="entry show" ng-form name="radio" id="radioFieldCollector">
 			<div class="form-feild left">
 				<div class="elaborate"  ng-repeat="rfeild in radioFields" ng-if="$index %2 === 0">
 					<p class="feild">{{rfeild}}</p>
